@@ -11,7 +11,7 @@
         Dos(document.getElementById("dosbox"), {
             wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
             autolock: true,
-            cycles: max
+            cycles: "max"
         }).ready(function(fs, main) {
             fs.extract("https://cdn.jsdelivr.net/gh/ahalves/DOOMkey/doom1.9.zip").then(() => {
         main(["-c", "doo"]);
