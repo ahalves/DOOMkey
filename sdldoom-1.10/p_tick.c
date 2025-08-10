@@ -171,6 +171,7 @@ void P_Ticker (void)
 
             printf("E%dM%dx%.2fy%.2fz%.2f\n", gameepisode, gamemap, px, py, pz);
 
+            printf("E%dM%d sector: x%d y%d z%d\n", gameepisode, gamemap, (int)px/128, (int)py/128, (int)pz);
             //saw something in the code somewhere that you have to flush this idk
             //couldnt do any harm could it
             fflush(stdout);
