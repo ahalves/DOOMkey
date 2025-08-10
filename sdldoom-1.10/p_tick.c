@@ -30,6 +30,8 @@ rcsid[] = "$Id: p_tick.c,v 1.4 1997/02/03 16:47:55 b1 Exp $";
 
 #include "doomstat.h"
 
+#include "doomdef.h"
+#include <stdio.h>
 
 int	leveltime;
 
@@ -127,6 +129,9 @@ void P_RunThinkers (void)
 // P_Ticker
 //
 
+//(un) surprisingly this was really easy to find lol
+// i love doom's structure
+
 void P_Ticker (void)
 {
     int		i;
@@ -152,6 +157,21 @@ void P_Ticker (void)
     P_RunThinkers ();
     P_UpdateSpecials ();
     P_RespawnSpecials ();
+
+
+    mobj_t* mo = players[consoleplayer].mo; //player
+    if (mo) {
+        //get the actual coords because its 2025
+        float px = mo->x / (float)FRACUNIT;
+        float py = mo->y / (float)FRACUNIT;
+        float pz = mo->z / (float)FRACUNIT; //i wonder if z is needed
+
+        printf("x: %.2f y: %.2f z: %.2f\n", px, py, pz);
+        //saw something in the code somewhere that you have to flush this
+        //idk
+        fflush(stdout);
+        //couldnt do any harm could it
+    }
 
     // for par times
     leveltime++;	
