@@ -963,10 +963,10 @@ void D_DoomMain (void)
     }
 
     // get skill / episode / map from parms
-    startskill = sk_medium;
+    startskill = sk_hard;
     startepisode = 1;
     startmap = 1;
-    autostart = false;
+    autostart = true;
 
 
     p = M_CheckParm ("-skill");

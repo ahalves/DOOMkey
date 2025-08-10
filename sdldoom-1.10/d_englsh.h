@@ -38,7 +38,7 @@
 //
 #define PRESSKEY 	"press a key."
 #define PRESSYN 	"press y or n."
-#define QUITMSG	"are you sure you want to\nquit this great game?"
+#define QUITMSG	"did you change your mind or something?\ni wont reset your password for you"
 #define LOADNET 	"you can't do load while in a net game!\n\n"PRESSKEY
 #define QLOADNET	"you can't quickload during a netgame!\n\n"PRESSKEY
 #define QSAVESPOT	"you haven't picked a quicksave slot yet!\n\n"PRESSKEY
@@ -63,7 +63,7 @@
 #define NETEND	"you can't end a netgame!\n\n"PRESSKEY
 #define ENDGAME	"are you sure you want to end the game?\n\n"PRESSYN
 
-#define DOSY		"(press y to quit)"
+#define DOSY		"(press y if you suck)"
 
 #define DETAILHI	"High detail"
 #define DETAILLO	"Low detail"
@@ -336,22 +336,24 @@
 //	ST_stuff.C
 //
 
-#define STSTR_MUS		"Music Change"
-#define STSTR_NOMUS		"IMPOSSIBLE SELECTION"
-#define STSTR_DQDON		"Degreelessness Mode On"
-#define STSTR_DQDOFF	"Degreelessness Mode Off"
+#define STSTR_MUS		""
+#define STSTR_NOMUS		"no music here, havent you realised?"
+#define STSTR_DQDON		"you need godmode? pathetic."
+#define STSTR_DQDOFF	"you need godmode? pathetic."
 
-#define STSTR_KFAADDED	"Very Happy Ammo Added"
-#define STSTR_FAADDED	"Ammo (no keys) Added"
+#define STSTR_KFAADDED	"you're really that bad?"
+#define STSTR_FAADDED	"you need extra ammo? i ate it all lol"
 
-#define STSTR_NCON		"No Clipping Mode ON"
-#define STSTR_NCOFF		"No Clipping Mode OFF"
+#define STSTR_NCON		"no clip? more like nonoclip"
+#define STSTR_NCOFF		"get clipped"
 
-#define STSTR_BEHOLD	"inVuln, Str, Inviso, Rad, Allmap, or Lite-amp"
-#define STSTR_BEHOLDX	"Power-up Toggled"
+#define STSTR_BEHOLD	"lo and behold! there's nothing for you!!!"
+#define STSTR_BEHOLDX	"nu uh"
 
-#define STSTR_CHOPPERS	"... doesn't suck - GM"
-#define STSTR_CLEV		"Changing Level..."
+#define STSTR_CHOPPERS	"no choppers :("
+#define STSTR_CLEV		"why don't you get good instead"
+
+#define STSTR_POS       "what, have you got dementia?"
 
 //
 //	F_Finale.C

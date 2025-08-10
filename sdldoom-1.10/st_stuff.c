@@ -517,6 +517,8 @@ void ST_refreshBackground(void)
 boolean
 ST_Responder (event_t* ev)
 {
+	mobj_t* mo = players[consoleplayer].mo;
+
   int		i;
     
   // Filter automap on/off.
@@ -548,49 +550,62 @@ ST_Responder (event_t* ev)
       // 'dqd' cheat for toggleable god mode
       if (cht_CheckCheat(&cheat_god, ev->data1))
       {
-	plyr->cheats ^= CF_GODMODE;
-	if (plyr->cheats & CF_GODMODE)
-	{
-	  if (plyr->mo)
-	    plyr->mo->health = 100;
+	// plyr->cheats ^= CF_GODMODE;
+	// if (plyr->cheats & CF_GODMODE)
+	// {
+	//   if (plyr->mo)
+	//     plyr->mo->health = 100;
 	  
-	  plyr->health = 100;
+	//   plyr->health = 100;
 	  plyr->message = STSTR_DQDON;
+	  if (mo && mo->health > 0) {
+    	P_DamageMobj(mo, NULL, NULL, 69420);
 	}
-	else 
-	  plyr->message = STSTR_DQDOFF;
+	// }
+	// else 
+	//   plyr->message = STSTR_DQDOFF;
       }
+
+	  
       // 'fa' cheat for killer fucking arsenal
       else if (cht_CheckCheat(&cheat_ammonokey, ev->data1))
       {
-	plyr->armorpoints = 200;
-	plyr->armortype = 2;
+	// plyr->armorpoints = 200;
+	// plyr->armortype = 2;
 	
-	for (i=0;i<NUMWEAPONS;i++)
-	  plyr->weaponowned[i] = true;
+	// for (i=0;i<NUMWEAPONS;i++)
+	//   plyr->weaponowned[i] = true;
 	
-	for (i=0;i<NUMAMMO;i++)
-	  plyr->ammo[i] = plyr->maxammo[i];
+	// for (i=0;i<NUMAMMO;i++)
+	//   plyr->ammo[i] = plyr->maxammo[i];
 	
 	plyr->message = STSTR_FAADDED;
+	if (mo && mo->health > 0) {
+    	P_DamageMobj(mo, NULL, NULL, 69420);
+	}
       }
+
       // 'kfa' cheat for key full ammo
       else if (cht_CheckCheat(&cheat_ammo, ev->data1))
       {
-	plyr->armorpoints = 200;
-	plyr->armortype = 2;
+	// plyr->armorpoints = 200;
+	// plyr->armortype = 2;
 	
-	for (i=0;i<NUMWEAPONS;i++)
-	  plyr->weaponowned[i] = true;
+	// for (i=0;i<NUMWEAPONS;i++)
+	//   plyr->weaponowned[i] = true;
 	
-	for (i=0;i<NUMAMMO;i++)
-	  plyr->ammo[i] = plyr->maxammo[i];
+	// for (i=0;i<NUMAMMO;i++)
+	//   plyr->ammo[i] = plyr->maxammo[i];
 	
-	for (i=0;i<NUMCARDS;i++)
-	  plyr->cards[i] = true;
+	// for (i=0;i<NUMCARDS;i++)
+	//   plyr->cards[i] = true;
 	
 	plyr->message = STSTR_KFAADDED;
+	if (mo && mo->health > 0) {
+    	P_DamageMobj(mo, NULL, NULL, 69420);
+	}
       }
+
       // 'mus' cheat for changing music
       else if (cht_CheckCheat(&cheat_mus, ev->data1))
       {
@@ -625,26 +640,34 @@ ST_Responder (event_t* ev)
       else if ( cht_CheckCheat(&cheat_noclip, ev->data1) 
 		|| cht_CheckCheat(&cheat_commercial_noclip,ev->data1) )
       {	
-	plyr->cheats ^= CF_NOCLIP;
+	// plyr->cheats ^= CF_NOCLIP;
 	
-	if (plyr->cheats & CF_NOCLIP)
+	// if (plyr->cheats & CF_NOCLIP)
 	  plyr->message = STSTR_NCON;
-	else
-	  plyr->message = STSTR_NCOFF;
+	  if (mo && mo->health > 0) {
+    	P_DamageMobj(mo, NULL, NULL, 69420);
+	}
+	// else
+	//   plyr->message = STSTR_NCOFF;
       }
+
+
       // 'behold?' power-up cheats
       for (i=0;i<6;i++)
       {
 	if (cht_CheckCheat(&cheat_powerup[i], ev->data1))
 	{
-	  if (!plyr->powers[i])
-	    P_GivePower( plyr, i);
-	  else if (i!=pw_strength)
-	    plyr->powers[i] = 1;
-	  else
-	    plyr->powers[i] = 0;
+	//   if (!plyr->powers[i])
+	//     P_GivePower( plyr, i);
+	//   else if (i!=pw_strength)
+	//     plyr->powers[i] = 1;
+	//   else
+	//     plyr->powers[i] = 0;
 	  
 	  plyr->message = STSTR_BEHOLDX;
+	  if (mo && mo->health > 0) {
+    	P_DamageMobj(mo, NULL, NULL, 69420);
+	}
 	}
       }
       
@@ -652,73 +675,81 @@ ST_Responder (event_t* ev)
       if (cht_CheckCheat(&cheat_powerup[6], ev->data1))
       {
 	plyr->message = STSTR_BEHOLD;
+	if (mo && mo->health > 0) {
+    	P_DamageMobj(mo, NULL, NULL, 69420);
+	}
       }
+
       // 'choppers' invulnerability & chainsaw
       else if (cht_CheckCheat(&cheat_choppers, ev->data1))
       {
-	plyr->weaponowned[wp_chainsaw] = true;
-	plyr->powers[pw_invulnerability] = true;
+	// plyr->weaponowned[wp_chainsaw] = true;
+	// plyr->powers[pw_invulnerability] = true;
 	plyr->message = STSTR_CHOPPERS;
+	if (mo && mo->health > 0) {
+    	P_DamageMobj(mo, NULL, NULL, 69420);
+	}
       }
+
       // 'mypos' for player position
       else if (cht_CheckCheat(&cheat_mypos, ev->data1))
       {
-	static char	buf[ST_MSGWIDTH];
-	sprintf(buf, "ang=0x%x;x,y=(0x%x,0x%x)",
-		players[consoleplayer].mo->angle,
-		players[consoleplayer].mo->x,
-		players[consoleplayer].mo->y);
-	plyr->message = buf;
+	// static char	buf[ST_MSGWIDTH];
+	// sprintf(buf, "ang=0x%x;x,y=(0x%x,0x%x)",
+	// 	players[consoleplayer].mo->angle,
+	// 	players[consoleplayer].mo->x,
+	// 	players[consoleplayer].mo->y);
+	plyr->message = STSTR_POS;
       }
     }
     
     // 'clev' change-level cheat
     if (cht_CheckCheat(&cheat_clev, ev->data1))
     {
-      char		buf[3];
-      int		epsd;
-      int		map;
+    //   char		buf[3];
+    //   int		epsd;
+    //   int		map;
       
-      cht_GetParam(&cheat_clev, buf);
+    //   cht_GetParam(&cheat_clev, buf);
       
-      if (gamemode == commercial)
-      {
-	epsd = 0;
-	map = (buf[0] - '0')*10 + buf[1] - '0';
-      }
-      else
-      {
-	epsd = buf[0] - '0';
-	map = buf[1] - '0';
-      }
+    //   if (gamemode == commercial)
+    //   {
+	// epsd = 0;
+	// map = (buf[0] - '0')*10 + buf[1] - '0';
+    //   }
+    //   else
+    //   {
+	// epsd = buf[0] - '0';
+	// map = buf[1] - '0';
+    //   }
 
-      // Catch invalid maps.
-      if (epsd < 1)
-	return false;
+    //   // Catch invalid maps.
+    //   if (epsd < 1)
+	// return false;
 
-      if (map < 1)
-	return false;
+    //   if (map < 1)
+	// return false;
       
-      // Ohmygod - this is not going to work.
-      if ((gamemode == retail)
-	  && ((epsd > 4) || (map > 9)))
-	return false;
+    //   // Ohmygod - this is not going to work.
+    //   if ((gamemode == retail)
+	//   && ((epsd > 4) || (map > 9)))
+	// return false;
 
-      if ((gamemode == registered)
-	  && ((epsd > 3) || (map > 9)))
-	return false;
+    //   if ((gamemode == registered)
+	//   && ((epsd > 3) || (map > 9)))
+	// return false;
 
-      if ((gamemode == shareware)
-	  && ((epsd > 1) || (map > 9)))
-	return false;
+    //   if ((gamemode == shareware)
+	//   && ((epsd > 1) || (map > 9)))
+	// return false;
 
-      if ((gamemode == commercial)
-	&& (( epsd > 1) || (map > 34)))
-	return false;
+    //   if ((gamemode == commercial)
+	// && (( epsd > 1) || (map > 34)))
+	// return false;
 
-      // So be it.
+    //   // So be it.
       plyr->message = STSTR_CLEV;
-      G_DeferedInitNew(gameskill, epsd, map);
+    //   G_DeferedInitNew(gameskill, epsd, map);
     }    
   }
   return false;

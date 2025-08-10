@@ -3680,17 +3680,6 @@ async function createWasm() {
       // We actually do the whole screen in Unlock...
     };
 
-  
-  var _emscripten_set_window_title = (title) => document.title = UTF8ToString(title);
-  
-  
-  var _SDL_WM_SetCaption = (title, icon) => {
-      if (title) {
-        _emscripten_set_window_title(title);
-      }
-      icon &&= UTF8ToString(icon);
-    };
-
   var initRandomFill = () => {
       // This block is not needed on v19+ since crypto.getRandomValues is builtin
       if (ENVIRONMENT_IS_NODE) {
@@ -7547,8 +7536,6 @@ var wasmImports = {
   SDL_UnlockSurface: _SDL_UnlockSurface,
   /** @export */
   SDL_UpdateRect: _SDL_UpdateRect,
-  /** @export */
-  SDL_WM_SetCaption: _SDL_WM_SetCaption,
   /** @export */
   __syscall_bind: ___syscall_bind,
   /** @export */

@@ -164,13 +164,19 @@ void P_Ticker (void)
         //get the actual coords because its 2025
         float px = mo->x / (float)FRACUNIT;
         float py = mo->y / (float)FRACUNIT;
-        float pz = mo->z / (float)FRACUNIT; //i wonder if z is needed
+        float pz = mo->z / (float)FRACUNIT;
 
-        printf("x: %.2f y: %.2f z: %.2f\n", px, py, pz);
-        //saw something in the code somewhere that you have to flush this
-        //idk
-        fflush(stdout);
-        //couldnt do any harm could it
+
+        if (leveltime % 35 == 0) { // avoid game lag
+
+            printf("E%dM%dx%.2fy%.2fz%.2f\n", gameepisode, gamemap, px, py, pz);
+
+            //saw something in the code somewhere that you have to flush this idk
+            //couldnt do any harm could it
+            fflush(stdout);
+
+        }
+
     }
 
     // for par times

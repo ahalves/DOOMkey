@@ -3,8 +3,6 @@ BIG FAT THANKS TO Lorti ON GITHUB: https://github.com/Lorti/sdldoom.wasm
 this is based on their hard work :)
 -->
 
-
-
 <!doctype html>
 <html lang="en-us">
   <head>
@@ -24,7 +22,7 @@ this is based on their hard work :)
 
       textarea {
         width: 80%;
-        height: 500px;
+        height: 200;
         font-family: monospace;
       }
 
@@ -32,6 +30,8 @@ this is based on their hard work :)
           border: none;
           background: black;
           image-rendering: pixelated;
+          width: 640px;
+          height: 400px;
       }
     </style>
   </head>
@@ -42,7 +42,7 @@ this is based on their hard work :)
     </div>
     <canvas id="canvas" class="center" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
     <div class="center textCenter">
-        <button onclick="Module.requestFullscreen(true, false)">Fullscreen</button>
+        <br>
     </div>
     <textarea id="output" class="center" rows="8"></textarea>
     <script>
@@ -107,6 +107,19 @@ this is based on their hard work :)
         };
       };
     </script>
-    {{{ SCRIPT }}}
+
+    <button onclick="loadScript()" id="loadDoomBtn">load doom</button>
+
+    <script>
+      function loadScript() {
+        const script = document.createElement("script");
+        script.src = "index.js";
+        document.body.appendChild(script);
+
+        document.getElementById("loadDoomBtn").disabled = true;
+      }
+    </script>
+
+    <!-- {{{ SCRIPT }}} -->
   </body>
 </html>

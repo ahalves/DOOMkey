@@ -42,7 +42,7 @@ this is based on their hard work :)
     </div>
     <canvas id="canvas" class="center" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
     <div class="center textCenter">
-        <button onclick="Module.requestFullscreen(true, false)">Fullscreen</button>
+        <br>
     </div>
     <textarea id="output" class="center" rows="8"></textarea>
     <script>
@@ -108,13 +108,15 @@ this is based on their hard work :)
       };
     </script>
 
-    <button onclick="loadScript()">load doom</button>
+    <button onclick="loadScript()" id="loadDoomBtn">load doom</button>
 
     <script>
       function loadScript() {
         const script = document.createElement("script");
         script.src = "index.js";
         document.body.appendChild(script);
+
+        document.getElementById("loadDoomBtn").disabled = true;
       }
     </script>
 
