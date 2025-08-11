@@ -21,12 +21,13 @@
         font-family: monospace;
       }
 
-      canvas {
+      #canvas {
           border: none;
           background: black;
           image-rendering: pixelated;
           width: 640px;
           height: 400px;
+          display: none;
       }
     </style>
   </head>
@@ -107,6 +108,10 @@
 
     <script>
       function loadScript() {
+
+        const canvas = document.getElementById("canvas");
+        canvas.style.display = "block";
+
         const script = document.createElement("script");
         script.src = "index.js";
         document.body.appendChild(script);

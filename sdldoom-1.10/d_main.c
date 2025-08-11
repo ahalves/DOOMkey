@@ -176,7 +176,7 @@ void D_PostEvent (event_t* ev)
 void D_ProcessEvents (void)
 {
     event_t*	ev;
-
+	
     // IF STORE DEMO, DO NOT ACCEPT INPUT
     if ( ( gamemode == commercial )
 	 && (W_CheckNumForName("map01")<0) )
@@ -185,6 +185,20 @@ void D_ProcessEvents (void)
     for ( ; eventtail != eventhead ; eventtail = (++eventtail)&(MAXEVENTS-1) )
     {
 	ev = &events[eventtail];
+
+	if (ev->type == ev_keydown && ev->data1 == 'l' || ev->data1 == 'L') {
+		mobj_t* mo = players[consoleplayer].mo;
+
+		float px = mo->x / (float)FRACUNIT;
+        float py = mo->y / (float)FRACUNIT;
+        float pz = mo->z / (float)FRACUNIT;
+
+		printf("E%dM%dx%.2fy%.2fz%.2f\n", gameepisode, gamemap, px, py, pz);
+
+        printf("E%dM%d sector: x%d y%d z%d\n", gameepisode, gamemap, (int)px/128, (int)py/128, (int)pz);
+        fflush(stdout);
+    }
+
 	if (M_Responder (ev))
 	    continue;               // menu ate the event
 	G_Responder (ev);
